@@ -14,7 +14,7 @@ def get_client():
 
 
 def make_call(number_to_notify):
-    domain = "https://9857-100-37-221-219.ngrok.io"
+    domain = os.environ['CALLBACK_DOMAIN']
     callback_url = domain + "/transcription_callback/"
     if number_to_notify is not None:
         callback_url += number_to_notify

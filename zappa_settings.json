@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "app.app",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "key4me",
+        "runtime": "python3.9",
+        "s3_bucket": "key4me-private"
+    }
+}
