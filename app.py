@@ -44,7 +44,7 @@ def transcription_callback(number_to_notify=None):
             log.call_time.ToJsonString(),
             LocationLog.CarStatus.Name(log.car_status),
             log.speed) + "http://www.google.com/maps/place/{:4f},{:4f}".format(
-                log.latitude, log.longitude)
+                log.latitude, log.longitude) + " http://key4me.xyz"
         n = phonenumbers.parse(number_to_notify, "US")
         if phonenumbers.is_valid_number(n):
             key4me.send_text(
