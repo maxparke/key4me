@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "google/protobuf/timestamp.proto";
+
+message LocationLog {
+	optional google.protobuf.Timestamp call_time = 1;
+	optional CarStatus car_status = 2;
+	optional float latitude = 3;
+	optional float longitude = 4;
+	optional float speed = 5;
+	optional string recording_sid = 6;
+	optional string transcription_sid = 7;
+	optional string call_sid = 8;
+	optional string raw_text = 9;
+
+	enum CarStatus {
+		UNKNOWN = 0;
+		MOVING = 1;
+		STOPPED = 2;
+		POOR_SIGNAL = 3;
+	}
+}
