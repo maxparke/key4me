@@ -1,5 +1,6 @@
 from yattag import Doc, indent
 from key4me_pb2 import LocationLog
+
 GOOGLE_MAPS_API_KEY = "AIzaSyBach1FZqujPT7pcTn9R24NeY2V-5N2orE"
 
 

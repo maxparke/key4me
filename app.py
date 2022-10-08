@@ -40,11 +40,16 @@ def transcription_callback(number_to_notify=None):
     uploader.write_new_index(html)
 
     if number_to_notify is not None:
+        sms_message = "As of {}, the car is {}, speed is {} mph. ".format(
+            log.call_time.ToJsonString(),
+            LocationLog.CarStatus.Name(log.car_status),
+            log.speed) + "http://www.google.com/maps/place/{:4f},{:4f}".format(
+                log.latitude, log.longitude)
         n = phonenumbers.parse(number_to_notify, "US")
         if phonenumbers.is_valid_number(n):
             key4me.send_text(
                 phonenumbers.format_number(
-                    n, phonenumbers.PhoneNumberFormat.E164), message)
+                    n, phonenumbers.PhoneNumberFormat.E164), sms_message)
     return "Ok"
 
 
