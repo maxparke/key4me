@@ -18,7 +18,7 @@ def make_page(log):
                 with tag('a', href="https://key4all.com"):
                     text('key4all')
                 text(
-                    ' car.  This is entirely unofficial and unaffiliated with MSCF.'
+                    ' car.  This is entirely unofficial and unaffiliated with MSCHF.'
                 )
             with tag('div', id="location"):
                 text("As of {}, the car is {}, speed is {} mph. ".format(
