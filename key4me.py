@@ -14,8 +14,8 @@ def get_client():
 
 
 def make_call(number_to_notify):
-    domain = "https://59dc-100-37-221-219.ngrok.io/"
-    callback_url = domain + "transcription_callback/"
+    domain = "https://be98-100-37-221-219.ngrok.io"
+    callback_url = domain + "/transcription_callback/"
     if number_to_notify is not None:
         callback_url += number_to_notify
     remote_phone = "+13375394255"
@@ -30,7 +30,8 @@ def make_call(number_to_notify):
 
 def fetch_transcript():
     [transcription] = get_client().transcriptions.list(limit=1)
-    recording = get_client().recordings.get(transcription.recording_sid).fetch()
+    recording = get_client().recordings.get(
+        transcription.recording_sid).fetch()
     call = get_client().calls.get(recording.call_sid).fetch()
     return parse_transcript(transcription, recording, call)
 
@@ -66,13 +67,14 @@ def parse_transcript(transcription, recording, call):
 
     speeds = re.findall("([0-9]+) miles per hour", transcription_text)
     if len(speeds) == 1:
-        log.speed = float(speeds[0])
+        log.speed = int(speeds[0])
     elif log.car_status == LocationLog.CarStatus.STOPPED:
         log.speed = 0
     else:
         print("Speed not found in transcript: " + transcription_text)
 
     return log
+
 
 def send_text(number, content):
     message = get_client().messages \
