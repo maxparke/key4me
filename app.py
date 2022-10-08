@@ -22,6 +22,7 @@ def make_call(number_to_notify=None):
 def transcription_callback(number_to_notify=None):
     print("received callback, number is: " + number_to_notify)
     log = key4me.fetch_transcript()
+    db.add_log(log)
     message = "As of {}, the car is {}, speed is {} mph. "\
         + "http://www.google.com/maps/place/{:4f},{:4f}".format(
         log.call_time, log.car_status, log.speed, log.latitude, log.longitude)

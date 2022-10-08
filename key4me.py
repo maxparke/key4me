@@ -1,15 +1,17 @@
 import os
 import re
 from twilio.rest import Client
-from enum import Enum
 from key4me_pb2 import LocationLog
 from google.protobuf.timestamp_pb2 import Timestamp
+
 MY_PHONE = "+19259408556"
+
 
 def get_client():
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     return Client(account_sid, auth_token)
+
 
 def make_call(number_to_notify):
     domain = "https://59dc-100-37-221-219.ngrok.io/"
@@ -17,24 +19,25 @@ def make_call(number_to_notify):
     if number_to_notify is not None:
         callback_url += number_to_notify
     remote_phone = "+13375394255"
-    twiml = "<Response><Record transcribe='true' timeout='10' transcribeCallback='{}'/></Response>".format(callback_url)
+    twiml = "<Response><Record transcribe='true' timeout='10' transcribeCallback='{}'/></Response>".format(
+        callback_url)
     print(twiml)
-    call = get_client().calls.create(
-                            twiml=twiml,
-                            to=remote_phone,
-                            from_=MY_PHONE
-                            )
+    call = get_client().calls.create(twiml=twiml,
+                                     to=remote_phone,
+                                     from_=MY_PHONE)
     return call.sid
 
+
 def fetch_transcript():
-  [transcription] = get_client().transcriptions.list(limit=1)
-  recording = get_client().recordings.get(transcription.recording_sid).fetch()
-  call = get_client().calls.get(recording.call_sid).fetch()
-  return parse_transcript(transcription, recording, call)
+    [transcription] = get_client().transcriptions.list(limit=1)
+    recording = get_client().recordings.get(transcription.recording_sid).fetch()
+    call = get_client().calls.get(recording.call_sid).fetch()
+    return parse_transcript(transcription, recording, call)
+
 
 def parse_transcript(transcription, recording, call):
     transcription_text = transcription.transcription_text
-    log = LocationLog();
+    log = LocationLog()
     log.call_time.FromDatetime(call.end_time)
     log.transcription_sid = transcription.sid
     log.recording_sid = recording.sid
@@ -51,7 +54,8 @@ def parse_transcript(transcription, recording, call):
     else:
         print("Coordinates not found in transcript: " + transcription_text)
 
-    statuses = re.findall("currently moving|currently not moving", transcription_text)
+    statuses = re.findall("currently moving|currently not moving",
+                          transcription_text)
     if len(statuses) == 1:
         if statuses[0] == "currently moving":
             log.car_status = LocationLog.CarStatus.MOVING
@@ -70,10 +74,10 @@ def parse_transcript(transcription, recording, call):
 
     return log
 
-    def send_text(number, content):
-        message = get_client().messages \
-                .create(
-                     body=content,
-                     from_=MY_PHONE,
-                     to=number
-                 )
+def send_text(number, content):
+    message = get_client().messages \
+            .create(
+                 body=content,
+                 from_=MY_PHONE,
+                 to=number
+             )
