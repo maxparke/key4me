@@ -3,3 +3,4 @@ twilio>=7.0.0
 protobuf>=4.21.7
 phonenumbers>=8.12.56
 boto3>=1.24.89
+yattag>=1.14.0

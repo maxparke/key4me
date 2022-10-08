@@ -6,9 +6,6 @@ class LogDb:
     """Encapsulates the DynamoDB table of logs"""
 
     def __init__(self):
-        """
-        :param dyn_resource: A Boto3 DynamoDB resource.
-        """
         self.dyn_resource = boto3.resource('dynamodb')
         self.table = self.dyn_resource.Table('location_logs')
 

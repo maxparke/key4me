@@ -14,11 +14,11 @@ def get_client():
 
 
 def make_call(number_to_notify):
-    domain = "https://be98-100-37-221-219.ngrok.io"
+    domain = "https://9857-100-37-221-219.ngrok.io"
     callback_url = domain + "/transcription_callback/"
     if number_to_notify is not None:
         callback_url += number_to_notify
-    remote_phone = "+13375394255"
+    remote_phone = "+18334572728"  #formerly +13375394255
     twiml = "<Response><Record transcribe='true' timeout='10' transcribeCallback='{}'/></Response>".format(
         callback_url)
     print(twiml)

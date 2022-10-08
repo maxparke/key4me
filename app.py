@@ -4,9 +4,12 @@ import key4me
 import phonenumbers
 from db import LogDb
 from key4me_pb2 import LocationLog
+from uploader import Uploader
+import html_generator
 
 app = Flask(__name__)
 logdb = LogDb()
+uploader = Uploader()
 
 
 @app.route("/make_call/<number_to_notify>")
@@ -21,17 +24,20 @@ def make_call(number_to_notify=None):
     return sid
 
 
+@app.route("/transcription_callback/", methods=['GET', 'POST'])
+def transcription_callback_no_args():
+    return transcription_callback(None)
+
+
 @app.route("/transcription_callback/<number_to_notify>",
            methods=['GET', 'POST'])
 def transcription_callback(number_to_notify=None):
-    print("received callback, number is: " + number_to_notify)
+    print("received callback, number is: " + str(number_to_notify))
     log = key4me.fetch_transcript()
     logdb.add_log(log)
-    message = "As of {}, the car is {}, speed is {} mph. ".format(
-        log.call_time.ToJsonString(), 
-        LocationLog.CarStatus.Name(log.car_status),
-        log.speed) + "http://www.google.com/maps/place/{:4f},{:4f}".format(
-            log.latitude, log.longitude)
+    html = html_generator.make_page(log)
+    print("Made html: ", html)
+    uploader.write_new_index(html)
 
     if number_to_notify is not None:
         n = phonenumbers.parse(number_to_notify, "US")

@@ -10,19 +10,19 @@ from google.protobuf import symbol_database as _symbol_database
 
 _sym_db = _symbol_database.Default()
 
-
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ckey4me.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb6\x02\n\x0bLocationLog\x12-\n\tcall_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12*\n\ncar_status\x18\x02 \x01(\x0e\x32\x16.LocationLog.CarStatus\x12\x10\n\x08latitude\x18\x03 \x01(\x02\x12\x11\n\tlongitude\x18\x04 \x01(\x02\x12\r\n\x05speed\x18\x05 \x01(\x05\x12\x15\n\rrecording_sid\x18\x06 \x01(\t\x12\x19\n\x11transcription_sid\x18\x07 \x01(\t\x12\x10\n\x08\x63\x61ll_sid\x18\x08 \x01(\t\x12\x10\n\x08raw_text\x18\t \x01(\t\"B\n\tCarStatus\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06MOVING\x10\x01\x12\x0b\n\x07STOPPED\x10\x02\x12\x0f\n\x0bPOOR_SIGNAL\x10\x03')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x0ckey4me.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb6\x02\n\x0bLocationLog\x12-\n\tcall_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12*\n\ncar_status\x18\x02 \x01(\x0e\x32\x16.LocationLog.CarStatus\x12\x10\n\x08latitude\x18\x03 \x01(\x02\x12\x11\n\tlongitude\x18\x04 \x01(\x02\x12\r\n\x05speed\x18\x05 \x01(\x05\x12\x15\n\rrecording_sid\x18\x06 \x01(\t\x12\x19\n\x11transcription_sid\x18\x07 \x01(\t\x12\x10\n\x08\x63\x61ll_sid\x18\x08 \x01(\t\x12\x10\n\x08raw_text\x18\t \x01(\t\"B\n\tCarStatus\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06MOVING\x10\x01\x12\x0b\n\x07STOPPED\x10\x02\x12\x0f\n\x0bPOOR_SIGNAL\x10\x03'
+)
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'key4me_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
-  DESCRIPTOR._options = None
-  _LOCATIONLOG._serialized_start=50
-  _LOCATIONLOG._serialized_end=360
-  _LOCATIONLOG_CARSTATUS._serialized_start=294
-  _LOCATIONLOG_CARSTATUS._serialized_end=360
+    DESCRIPTOR._options = None
+    _LOCATIONLOG._serialized_start = 50
+    _LOCATIONLOG._serialized_end = 360
+    _LOCATIONLOG_CARSTATUS._serialized_start = 294
+    _LOCATIONLOG_CARSTATUS._serialized_end = 360
 # @@protoc_insertion_point(module_scope)
