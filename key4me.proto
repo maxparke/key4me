@@ -17,6 +17,6 @@ message LocationLog {
 		UNKNOWN = 0;
 		MOVING = 1;
 		STOPPED = 2;
-		POOR_SIGNAL = 3;
+		NOT_IN_GPS = 3;
 	}
 }

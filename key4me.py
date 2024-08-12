@@ -55,13 +55,15 @@ def parse_transcript(transcription, recording, call):
     else:
         print("Coordinates not found in transcript: " + transcription_text)
 
-    statuses = re.findall("currently moving|currently not moving",
+    statuses = re.findall("currently moving|currently not moving|limited gps service",
                           transcription_text)
     if len(statuses) == 1:
         if statuses[0] == "currently moving":
             log.car_status = LocationLog.CarStatus.MOVING
         elif statuses[0] == "currently not moving":
             log.car_status = LocationLog.CarStatus.STOPPED
+        elif statuses[0] == "limited gps service":
+            log.car_status = LocationLog.CarStatus.NOT_IN_GPS
     else:
         print("Status not found in transcript: " + transcription_text)
 
